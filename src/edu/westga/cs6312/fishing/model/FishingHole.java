@@ -18,11 +18,15 @@ public class FishingHole {
 	}
 	
 	public String toString() {
-		return getLocation() + " with " + this.fish.toString();
+		if (this.fish != null) {
+			return getLocation() + " containing " + this.fish.toString();
+		} else {
+			return getLocation() + " containing no fish";
+		}
 	}
 	
 	private void setupFishingHole(){
-		int chance = (int) Math.random() * 100;
+		int chance = (int) (Math.random() * 100);
 		if (chance >= 50) {
 			this.fish = null;
 		} else {

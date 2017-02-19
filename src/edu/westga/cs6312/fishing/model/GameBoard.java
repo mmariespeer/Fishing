@@ -29,7 +29,7 @@ public class GameBoard {
 	public String toString() {
 		String holes = "";
 		for (int i = 0; i < theFishingHoles.length; i++){
-			holes = this.theFishingHoles[i].toString() + "\n";
+			holes += this.theFishingHoles[i].toString() + "\n";
 		}
 		String gameboard = holes + "\n" + theAngler.toString();
 		return gameboard;

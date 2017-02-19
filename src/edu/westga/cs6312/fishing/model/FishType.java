@@ -11,8 +11,7 @@ public abstract class FishType {
 		return fishInSchool;
 	}
 	
-	public void removeFish(int fishToRemove) {
-		
+	public void removeFish(int fishToRemove) {	
 	}
 	
 	public abstract int catchFish();
@@ -20,6 +19,6 @@ public abstract class FishType {
 	public abstract double costToFish();
 	
 	public String toString() {
-		return "no fish";
+		return " no fish";
 	}
 }
