@@ -84,11 +84,17 @@ public class FishingTUI {
 	}
 	
 	private void getMoveDirection() {
-		int selectionInt = this.getIntegerFromUser("\n1 - Up\n2 - Down\n");
-			
-		if (selectionInt <= 0 || selectionInt >= 3) {
-			System.out.println("Invalid Choice");
-		} else if (selectionInt == 1) {
+		int selectionInt;
+		do {
+			selectionInt = this.getIntegerFromUser("\n1 - Up\n2 - Down\n");
+
+			if (selectionInt <= 0 || selectionInt >= 3) {
+				System.out.println("Invalid Choice");
+			}  
+		} while (selectionInt <= 0 || selectionInt >= 3);
+		
+		
+		if (selectionInt == 1) {
 			this.move(1);
 		} else {
 			this.move(2);
