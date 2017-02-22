@@ -34,7 +34,7 @@ public class FishingTUI {
 			this.showMenu();
 			selectionInt = this.getIntegerFromUser("Please enter your selection: ");
 			
-			if (selectionInt <= 0 || selectionInt >= 5) {
+			if (selectionInt <= 0 || selectionInt >= 6) {
 				System.out.println("Invalid Choice");
 			}
 			
@@ -44,8 +44,10 @@ public class FishingTUI {
 				this.describeAngler();
 			} else if (selectionInt == 3) {
 				this.describeGame();
+			} else if (selectionInt == 4) {
+				this.getMoveDirection();
 			}
-		}	while (selectionInt != 4);
+		}	while (selectionInt != 5);
 		System.out.println("Thanks for playing! - Goodbye.");
 	}
 	
@@ -69,7 +71,8 @@ public class FishingTUI {
 		System.out.println("\n1 - Describe current fishing hole");
 		System.out.println("2 - Describe angler");
 		System.out.println("3 - Describe game board");
-		System.out.println("4 - Quit\n");
+		System.out.println("4 - Move");
+		System.out.println("5 - Quit\n");
 	}
 	
 	
@@ -78,5 +81,25 @@ public class FishingTUI {
 		String userInput = this.input.nextLine();
 		int answer = Integer.parseInt(userInput);
 		return answer;
+	}
+	
+	private void getMoveDirection() {
+		int selectionInt = this.getIntegerFromUser("\n1 - Up\n2 - Down\n");
+			
+		if (selectionInt <= 0 || selectionInt >= 3) {
+			System.out.println("Invalid Choice");
+		} else if (selectionInt == 1) {
+			this.move(1);
+		} else {
+			this.move(2);
+		}
+	}
+	
+	private void move(int direction) {
+		if (direction == 1) {
+			this.theGameBoard.moveUp();
+		} else {
+			this.theGameBoard.moveDown();
+		}
 	}
 }
