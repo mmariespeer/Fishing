@@ -51,7 +51,12 @@ public class FishingHole {
 	}
 	
 	private void setupFishingHole() {
-		this.addFish();
+		int chance = (int) (Math.random() * 100);
+		if (chance >= 50) {
+			this.fish = this.addFish();
+		} else {
+			this.fish = null;
+		}
 	}
 	
 	private FishType addFish() {

@@ -57,6 +57,7 @@ public class FishingTUI {
 		int currentHole = this.theGameBoard.getCurrentHole();
 		FishingHole current = this.theGameBoard.getTheFishingHole(currentHole);
 		String holeDescription = current.toString();
+		System.out.println(current.getFish());
 		System.out.println(holeDescription);
 	}
 	
@@ -113,25 +114,39 @@ public class FishingTUI {
 	}
 	
 	private void fishTheHole() {
-		//get details of current status
+
 		Angler theAngler = this.theGameBoard.getTheAngler();
 		int money = theAngler.getMoneyLeft();
+		
 		FishingHole theHole = this.theGameBoard.getTheFishingHole(this.theGameBoard.getCurrentHole());
-		FishType theFish = theHole.getFish();
-		int fishInSchool = theFish.getFishInSchool();
-		int costToFish = theFish.costToFish();
+		FishType theFish = theHole.getFish(); 
+		
+		int fishInSchool;
+		int costToFish;
+		
+		if (theFish == null) {
+			fishInSchool = 0;
+			costToFish = 0;
+			
+		} else {
+			fishInSchool = theFish.getFishInSchool();
+			costToFish = theFish.costToFish();
+		}
+		
+		
 		
 		if (costToFish > money) {
 			System.out.println("There is not enough money");
 		} else if (fishInSchool == 0) {
 			System.out.println("There are no fish left");
-		} else {
+		}  else {
 			theAngler.payToFish(costToFish);
 			int fishCaught = theFish.catchFish();
 			theAngler.catchFish(fishInSchool - fishCaught);
-		}
-		System.out.println("\n The angler has " + theAngler.getMoneyLeft() + " money "
-				+ "left\nThere are " + theFish.getFishInSchool() + " fish left in this hole");
+			System.out.println("\n The angler has " + theAngler.getMoneyLeft() + " money "
+					+ "left\nThere are " + theFish.getFishInSchool() + " fish left in this hole");
+		} 
+		
 	}
 	
 

@@ -60,4 +60,6 @@ public abstract class FishType {
 	public String toString() {
 		return "There is a school of " + this.fishInSchool + " fish";
 	}
+	
+
 }
