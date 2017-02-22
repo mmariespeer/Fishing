@@ -1,12 +1,25 @@
 package edu.westga.cs6312.fishing.view;
 import edu.westga.cs6312.fishing.model.*;
 import java.util.Scanner;
-
+/**
+ * The FishingTUI class acts as the user interface for the application
+ * @author Melissa Speer Osborne
+ * @version 02/21/2017
+ */
 public class FishingTUI {
-	GameBoard theGameBoard;
-	Scanner input;
+	private GameBoard theGameBoard;
+	private Scanner input;
 	
+	/**
+	 * Initialize the instance variables to create the TUI object
+	 * @param aGame A game board object
+	 * Precondition: aGame != null
+	 * Postcondition: A game board and user are created.
+	 */
 	public FishingTUI(GameBoard aGame) {
+		if (aGame == null) {
+			throw new IllegalArgumentException("Invalid game");
+		}
 		this.theGameBoard = aGame;
 		this.input = new Scanner(System.in);
 	}
@@ -19,7 +32,7 @@ public class FishingTUI {
 		int selectionInt;
 		do {
 			this.showMenu();
-			selectionInt = getIntegerFromUser("Please enter your selection: ");
+			selectionInt = this.getIntegerFromUser("Please enter your selection: ");
 			
 			if (selectionInt <= 0 || selectionInt >= 5) {
 				System.out.println("Invalid Choice");
@@ -62,7 +75,7 @@ public class FishingTUI {
 	
 	private int getIntegerFromUser(String message) {
 		System.out.println(message);
-		String userInput = input.nextLine();
+		String userInput = this.input.nextLine();
 		int answer = Integer.parseInt(userInput);
 		return answer;
 	}
