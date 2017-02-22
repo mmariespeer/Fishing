@@ -61,7 +61,7 @@ public class Angler {
 		if (fishCaught < 0) {
 			throw new IllegalArgumentException("Cannot catch negative fish");
 		}
-		this.fishCaught = this.fishCaught + fishCaught;
+		this.fishCaught += fishCaught;
 		return this.fishCaught;
 	}
 	

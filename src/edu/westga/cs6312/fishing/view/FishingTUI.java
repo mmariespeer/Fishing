@@ -34,7 +34,7 @@ public class FishingTUI {
 			this.showMenu();
 			selectionInt = this.getIntegerFromUser("Please enter your selection: ");
 			
-			if (selectionInt <= 0 || selectionInt >= 6) {
+			if (selectionInt <= 0 || selectionInt >= 7) {
 				System.out.println("Invalid Choice");
 			}
 			
@@ -46,14 +46,16 @@ public class FishingTUI {
 				this.describeGame();
 			} else if (selectionInt == 4) {
 				this.getMoveDirection();
+			} else if (selectionInt == 5) {
+				this.fishTheHole();
 			}
-		}	while (selectionInt != 5);
+		}	while (selectionInt != 6);
 		System.out.println("Thanks for playing! - Goodbye.");
 	}
 	
 	private void describeCurrentHole() {
 		int currentHole = this.theGameBoard.getCurrentHole();
-		FishingHole current = new FishingHole(currentHole);
+		FishingHole current = this.theGameBoard.getTheFishingHole(currentHole);
 		String holeDescription = current.toString();
 		System.out.println(holeDescription);
 	}
@@ -72,7 +74,8 @@ public class FishingTUI {
 		System.out.println("2 - Describe angler");
 		System.out.println("3 - Describe game board");
 		System.out.println("4 - Move");
-		System.out.println("5 - Quit\n");
+		System.out.println("5 - Fish the hole");
+		System.out.println("6 - Quit\n");
 	}
 	
 	
@@ -108,4 +111,28 @@ public class FishingTUI {
 			this.theGameBoard.moveDown();
 		}
 	}
+	
+	private void fishTheHole() {
+		//get details of current status
+		Angler theAngler = this.theGameBoard.getTheAngler();
+		int money = theAngler.getMoneyLeft();
+		FishingHole theHole = this.theGameBoard.getTheFishingHole(this.theGameBoard.getCurrentHole());
+		FishType theFish = theHole.getFish();
+		int fishInSchool = theFish.getFishInSchool();
+		int costToFish = theFish.costToFish();
+		
+		if (costToFish > money) {
+			System.out.println("There is not enough money");
+		} else if (fishInSchool == 0) {
+			System.out.println("There are no fish left");
+		} else {
+			theAngler.payToFish(costToFish);
+			int fishCaught = theFish.catchFish();
+			theAngler.catchFish(fishInSchool - fishCaught);
+		}
+		System.out.println("\n The angler has " + theAngler.getMoneyLeft() + " money "
+				+ "left\nThere are " + theFish.getFishInSchool() + " fish left in this hole");
+	}
+	
+
 }
