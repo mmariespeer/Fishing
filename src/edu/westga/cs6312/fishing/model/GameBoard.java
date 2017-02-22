@@ -53,5 +53,27 @@ public class GameBoard {
 		String gameboard = holes + "\n" + this.theAngler.toString();
 		return gameboard;
 	}
+	
+	/**
+	 * Move up to the next fishing hole
+	 */
+	public void moveUp() {
+		if (this.currentHole == 9) {
+			this.currentHole = 0;
+		} else {
+			this.currentHole = this.currentHole + 1;
+		}
+	}
+	
+	/**
+	 * Move down to the next fishing hole
+	 */
+	public void moveDown() {
+		if (this.currentHole == 0) {
+			this.currentHole = 9;
+		} else {
+			this.currentHole = this.currentHole - 1;
+		}
+	}
 
 }
