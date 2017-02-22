@@ -57,7 +57,6 @@ public class FishingTUI {
 		int currentHole = this.theGameBoard.getCurrentHole();
 		FishingHole current = this.theGameBoard.getTheFishingHole(currentHole);
 		String holeDescription = current.toString();
-		System.out.println(current.getFish());
 		System.out.println(holeDescription);
 	}
 	
