@@ -32,6 +32,21 @@ public class GameBoard {
 	public Angler getTheAngler() {
 		return this.theAngler;
 	}
+	
+	/**
+	 * Get the fishing hole individually at a specific index
+	 * @param index as an integer
+	 * @return a FishingHole object
+	 * Precondition: index !< 0 or > theFishingHoles.length
+	 * Postcondition: A specific FishingHole from the array
+	 */
+	public FishingHole getTheFishingHole(int index) {
+		if (index < 0 || index > this.theFishingHoles.length) {
+			throw new IllegalArgumentException("Invalid index");
+		}
+		FishingHole theHole = this.theFishingHoles[index];
+		return theHole;
+	}
 
 	/**
 	 * Get the current fishing hole
